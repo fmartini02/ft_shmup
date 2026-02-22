@@ -15,6 +15,8 @@ Render::Render() {
 	init_pair(3, COLOR_YELLOW, COLOR_BLACK);  // proiettili nemici
 	init_pair(4, COLOR_CYAN,   COLOR_BLACK);  // proiettile player
 	init_pair(5, COLOR_MAGENTA,  COLOR_BLACK);  // sassi
+	init_pair(6, COLOR_BLUE,  COLOR_BLACK);  //background
+	wbkgd(_win, COLOR_RED);
 }
 
 Render::~Render() {

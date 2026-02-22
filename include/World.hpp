@@ -16,11 +16,11 @@ class World {
 private:
 	std::vector<std::unique_ptr<AGameEntity>>	_entities;
 	Player										_player;
-	int											_spawnTimer;
-	// int											_waveTimer;
 	int											_scrollOffset;
 	int											_invincibleFrames;
 	int											_startDelay;
+	int											_level;
+	float										_levelTimer;
 
 public:
 	World();
@@ -29,6 +29,7 @@ public:
 	void	update(float dt);
 	void	render(WINDOW *win);
 
+	void	renderBackground(WINDOW *win);
 	Player&	getPlayer();
 	void	checkCollisions(int& lives, int& score);
 	std::vector<std::unique_ptr<AGameEntity>>&	getEntities();

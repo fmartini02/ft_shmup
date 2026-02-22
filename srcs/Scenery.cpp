@@ -10,7 +10,7 @@ Scenery::~Scenery() {
 
 void Scenery::update(float dt) {
 	_moveTimer += dt;
-	if (_moveTimer > 0.8f) {    // si muove ogni 0.3 secondi — aumenta per rallentare
+	if (_moveTimer > 0.2f) {    // si muove ogni 0.3 secondi — aumenta per rallentare
 		setX(getX() - 1);
 		_moveTimer = 0;
 	}
