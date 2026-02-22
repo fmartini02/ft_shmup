@@ -14,7 +14,9 @@ void AProjectile::update(float dt) {
 }
 
 void AProjectile::render(WINDOW *win) {
+	attron(COLOR_PAIR(3));
 	mvwaddch(win, (int)getY(), (int)getX(), getSymbol());
+	attroff(COLOR_PAIR(3));
 }
 
 // PlayerBullet: va verso l'alto (dy = -1), simbolo '|'

@@ -5,7 +5,7 @@
 
 World::World() :
 	_player(WIDTH / 2, HEIGHT - 2, 3, 1.0f, 3),
-	_spawnTimer(0), _waveTimer(0), _scrollOffset(0),
+	_spawnTimer(0), /*_waveTimer(0),*/ _scrollOffset(0),
 	_invincibleFrames(0), _startDelay(150) {}
 
 World::~World() {}
@@ -55,29 +55,35 @@ void World::spawnEnemies() {
 		_startDelay--;
 		return; // non spawnare nulla finché non finisce il delay
 	}
+	int enemyCount = 0;
+    for (auto& e : _entities) {
+        if (dynamic_cast<Enemy*>(e.get()))
+            enemyCount++;
+    }
 	_spawnTimer++;
-	if (rand() % 100 < 1) {
-		float x = rand() % WIDTH;
-		int type = rand() % 4;
-		switch (type) {
-			case 0: _entities.push_back(std::make_unique<BasicEnemy>(x, 0));   break;
-			// case 1: _entities.push_back(std::make_unique<ShooterEnemy>(x, 0)); break;
-			// case 2: _entities.push_back(std::make_unique<ZigzagEnemy>(x, 0));  break;
-			// case 3: _entities.push_back(std::make_unique<TankEnemy>(x, 0));    break;
-		}
-	}
+	// spawna solo se ce ne sono meno di 3
+    if (enemyCount < 5 && rand() % 1000 < 1) {
+        float x = rand() % WIDTH;
+        _entities.push_back(std::make_unique<BasicEnemy>(x, 0));
+    }
+	// if (rand() % 100 < 1) {
+	// 	float start_x = rand() % (WIDTH -10);
+	// 	// int type = rand() % 4;
+	// 	for (int i = 0; i < 2; i++) {
+    //     _entities.push_back(std::make_unique<BasicEnemy>(start_x + i * 4, 0));
+    // }
 
 	// Onda speciale ogni 250 frame
-	_waveTimer++;
-	if (_waveTimer % 250 == 0) {
-		float start_x = rand() % (WIDTH - 10);
-		for (int i = 0; i < 5; i++) {
-			if (i % 2 == 0)
-				_entities.push_back(std::make_unique<BasicEnemy>(start_x + i * 2, 0));
-			// else
-				// _entities.push_back(std::make_unique<ShooterEnemy>(start_x + i * 2, 0));
-		}
-	}
+	// _waveTimer++;
+	// if (_waveTimer % 500 == 0) {
+	// 	float start_x = rand() % (WIDTH - 10);
+	// 	for (int i = 0; i < 5; i++) {
+	// 		if (i % 2 == 0)
+	// 			_entities.push_back(std::make_unique<BasicEnemy>(start_x + i * 2, 0));
+	// 		// else
+	// 			// _entities.push_back(std::make_unique<ShooterEnemy>(start_x + i * 2, 0));
+	// 	}
+	// }
 }
 
 // ============================================================================

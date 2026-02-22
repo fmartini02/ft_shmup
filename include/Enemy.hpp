@@ -27,32 +27,32 @@ public:
 	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
 };
 
-// class ShooterEnemy : public Enemy {
-// public:
-// 	ShooterEnemy(float x, float y);
-// 	void	render(WINDOW *win) override;
-// 	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
-// };
+class ShooterEnemy : public Enemy {
+public:
+	ShooterEnemy(float x, float y);
+	void	render(WINDOW *win) override;
+	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
+};
 
-// class ZigzagEnemy : public Enemy {
-// private:
-// 	float	_zigzagTimer;
-// 	float	_dx;
-// public:
-// 	ZigzagEnemy(float x, float y);
-// 	void	update(float dt) override;
-// 	void	render(WINDOW *win) override;
-// 	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
-// };
+class ZigzagEnemy : public Enemy {
+private:
+	float	_zigzagTimer;
+	float	_dx;
+public:
+	ZigzagEnemy(float x, float y);
+	void	update(float dt) override;
+	void	render(WINDOW *win) override;
+	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
+};
 
-// class TankEnemy : public Enemy {
-// private:
-// 	float	_moveTimer;
-// public:
-// 	TankEnemy(float x, float y);
-// 	void	update(float dt) override;
-// 	void	render(WINDOW *win) override;
-// 	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
-// };
+class TankEnemy : public Enemy {
+private:
+	float	_moveTimer;
+public:
+	TankEnemy(float x, float y);
+	void	update(float dt) override;
+	void	render(WINDOW *win) override;
+	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
+};
 
 #endif

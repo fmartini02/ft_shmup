@@ -17,7 +17,7 @@ private:
 	std::vector<std::unique_ptr<AGameEntity>>	_entities;
 	Player										_player;
 	int											_spawnTimer;
-	int											_waveTimer;
+	// int											_waveTimer;
 	int											_scrollOffset;
 	int											_invincibleFrames;
 	int											_startDelay;

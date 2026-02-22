@@ -19,5 +19,7 @@ void Scenery::update(float dt) {
 }
 
 void Scenery::render(WINDOW *win) {
+	attron(COLOR_PAIR(5));
 	mvwaddch(win, (int)getY(), (int)getX(), getSymbol());
+	attroff(COLOR_PAIR(5));
 }

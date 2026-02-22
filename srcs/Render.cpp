@@ -13,7 +13,7 @@ Render::Render() {
 	init_pair(2, COLOR_RED,    COLOR_BLACK);  // nemici
 	init_pair(3, COLOR_YELLOW, COLOR_BLACK);  // proiettili nemici
 	init_pair(4, COLOR_CYAN,   COLOR_BLACK);  // proiettile player
-	init_pair(5, COLOR_WHITE,  COLOR_BLACK);  // scenery
+	init_pair(5, COLOR_MAGENTA,  COLOR_BLACK);  // sassi
 }
 
 Render::~Render() {
