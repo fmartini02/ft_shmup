@@ -1,6 +1,6 @@
 #include "../include/Scenery.hpp"
 
-Scenery::Scenery(float x, float y) : AGameEntity(x, y, '#') {
+Scenery::Scenery(float x, float y) : AGameEntity(x, y, "█") {
 	// std::cout << "* SCENERY CREATED *" << std::endl;
 }
 
@@ -20,6 +20,6 @@ void Scenery::update(float dt) {
 
 void Scenery::render(WINDOW *win) {
 	attron(COLOR_PAIR(5));
-	mvwaddch(win, (int)getY(), (int)getX(), getSymbol());
+	mvwprintw(win, (int)getY(), (int)getX(), "%s", getSymbol());
 	attroff(COLOR_PAIR(5));
 }

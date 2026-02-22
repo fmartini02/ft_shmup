@@ -16,6 +16,6 @@ int HUD::getElapsedSeconds() const {
 
 void HUD::render(WINDOW *win, int score, int lives) {
 	int seconds = getElapsedSeconds();
-	mvwprintw(win, HEIGHT - 1, 0, "SCORE: %-6d | LIVES: %d | TIME: %02d:%02d",
+	mvwprintw(win, LINES - 1, 0, "SCORE: %-6d | LIVES: %d | TIME: %02d:%02d",
 			  score, lives, seconds / 60, seconds % 60);
 }

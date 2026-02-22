@@ -10,7 +10,7 @@ protected:
 	float	_speed;
 
 public:
-	AProjectile(float x, float y, char symbol, float dx, float dy, float speed);
+	AProjectile(float x, float y, const char* symbol, float dx, float dy, float speed);
 	virtual ~AProjectile();
 
 	virtual void	update(float dt) override;

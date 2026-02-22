@@ -1,7 +1,7 @@
 #ifndef RENDER_HPP
 #define RENDER_HPP
 
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 #include <iostream>
 
 class Render {

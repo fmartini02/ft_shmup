@@ -4,7 +4,7 @@
 #include <algorithm>
 
 World::World() :
-	_player(WIDTH / 2, HEIGHT - 2, 3, 1.0f, 3),
+	_player(COLS / 2, LINES - 2, 3, 1.0f, 3),
 	_spawnTimer(0), /*_waveTimer(0),*/ _scrollOffset(0),
 	_invincibleFrames(0), _startDelay(150) {}
 
@@ -44,7 +44,7 @@ void World::updateMap() {
 			sceneryCount++;
 	}
 	if (sceneryCount < 30 && rand() % 300 == 0)
-		_entities.push_back(std::make_unique<Scenery>(WIDTH - 1, rand() % HEIGHT));
+		_entities.push_back(std::make_unique<Scenery>(COLS - 1, rand() % LINES));
 }
 
 // ============================================================================
@@ -63,11 +63,11 @@ void World::spawnEnemies() {
 	_spawnTimer++;
 	// spawna solo se ce ne sono meno di 3
     if (enemyCount < 5 && rand() % 1000 < 1) {
-        float x = rand() % WIDTH;
+        float x = rand() % COLS;
         _entities.push_back(std::make_unique<BasicEnemy>(x, 0));
     }
 	// if (rand() % 100 < 1) {
-	// 	float start_x = rand() % (WIDTH -10);
+	// 	float start_x = rand() % (COLS -10);
 	// 	// int type = rand() % 4;
 	// 	for (int i = 0; i < 2; i++) {
     //     _entities.push_back(std::make_unique<BasicEnemy>(start_x + i * 4, 0));
@@ -76,7 +76,7 @@ void World::spawnEnemies() {
 	// Onda speciale ogni 250 frame
 	// _waveTimer++;
 	// if (_waveTimer % 500 == 0) {
-	// 	float start_x = rand() % (WIDTH - 10);
+	// 	float start_x = rand() % (COLS - 10);
 	// 	for (int i = 0; i < 5; i++) {
 	// 		if (i % 2 == 0)
 	// 			_entities.push_back(std::make_unique<BasicEnemy>(start_x + i * 2, 0));

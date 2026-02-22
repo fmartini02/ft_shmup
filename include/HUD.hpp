@@ -1,7 +1,7 @@
 #ifndef HUD_HPP
 #define HUD_HPP
 
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 #include <chrono>
 #include <iostream>
 

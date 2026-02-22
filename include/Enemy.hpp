@@ -12,7 +12,7 @@ protected:
 	int		_points;        // punti che vale quando muore
 
 public:
-	Enemy(float x, float y, char symbol, int hp, float speed, int points);
+	Enemy(float x, float y, const char* symbol, int hp, float speed, int points);
 	virtual ~Enemy();
 
 	int				getPoints() const;

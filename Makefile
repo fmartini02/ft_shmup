@@ -4,7 +4,7 @@ CXX     = c++
 CXXFLAGS = -Wall -Wextra -Werror
 
 INCLUDES = -I include
-LIBS     = -lncurses
+LIBS     = -lncursesw
 
 SRCS    = srcs/main.cpp \
 		  srcs/AGameEntity.cpp \

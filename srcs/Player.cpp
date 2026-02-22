@@ -2,7 +2,7 @@
 #include "../include/AProjectile.hpp"
 
 Player::Player(float x, float y, int hp, float speed, int lives):
-	Ship(x, y, 'P', hp, speed),  _score(0), _lives(lives),
+	Ship(x, y, "Δ", hp, speed),  _score(0), _lives(lives),
 	_shootCooldown(0.5f), _shootTimer(0.0f) {
 	// std::cout << "* PLAYER HAS BEEN CREATED *" << std::endl;
 }
@@ -16,21 +16,19 @@ int		Player::getLives() { return _lives; }
 void	Player::update(float dt) {
 	if (_shootTimer > 0)
 		_shootTimer -= dt;
+	// boundary check
+	if (getX() < 0)         setX(0);
+	if (getY() < 0)         setY(0);
+	if (getX() >= COLS - 1) setX(COLS - 1);
+	if (getY() >= LINES - 2) setY(LINES - 2);  // -2 per lasciare spazio alla HUD
 
-	// boundary check (dipenderà dalle dimensioni dello schermo)
-	if (getX() < 0)
-		setX(0);
-	if (getY() < 0)
-		setY(0);
-	// if (getX() > MAX_X) setX(MAX_X);
-	// if (getY() > MAX_Y) setY(MAX_Y);
 	if (_hp <= 0)
 		setAlive(false);
 }
 
 void Player::render(WINDOW *win) {
 	attron(COLOR_PAIR(1));
-	mvwaddch(win, (int)getY(), (int)getX(), getSymbol());
+	mvwprintw(win, (int)getY(), (int)getX(), "%s", getSymbol());
 	attroff(COLOR_PAIR(1));
 }
 

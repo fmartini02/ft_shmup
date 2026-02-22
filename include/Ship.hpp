@@ -10,7 +10,7 @@ protected:
 	int		_hp;
 	float	_speed;
 public:
-	Ship(float x, float y, char symbol, int hp, float speed);
+	Ship(float x, float y, const char* symbol, int hp, float speed);
 	virtual ~Ship();
 
 	int		getHp() const;

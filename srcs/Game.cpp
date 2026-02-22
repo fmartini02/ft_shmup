@@ -30,7 +30,8 @@ void Game::handleInput() {
 	if (_input.isDown())  _world.getPlayer().move(0,  1);
 	if (_input.isLeft())  _world.getPlayer().move(-1, 0);
 	if (_input.isRight()) _world.getPlayer().move(1,  0);
-	if (_input.isShoot()) _world.getPlayer().shoot(_world.getEntities());
+	// if (_input.isShoot()) _world.getPlayer().shoot(_world.getEntities());
+	_world.getPlayer().shoot(_world.getEntities());
 }
 void Game::run() {
 	_running = true;

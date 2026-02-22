@@ -1,6 +1,7 @@
 #include "../include/Render.hpp"
 
 Render::Render() {
+	setlocale(LC_ALL, "");
 	_win = initscr();
 	cbreak();
 	noecho();

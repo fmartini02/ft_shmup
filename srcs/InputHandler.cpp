@@ -1,6 +1,6 @@
 #include "../include/InputHandler.hpp"
 #include <iostream>
-#include <ncurses.h>
+#include <ncursesw/ncurses.h>
 
 InputHandler::InputHandler() : _key(0) {
 	// std::cout << "*HANDLER HAS BEEN CREATED*" << std::endl;
