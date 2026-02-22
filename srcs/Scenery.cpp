@@ -1,6 +1,6 @@
 #include "../include/Scenery.hpp"
 
-Scenery::Scenery(float x, float y) : AGameEntity(x, y, "█") {
+Scenery::Scenery(float x, float y) : AGameEntity(x, y, "█"), _moveTimer(0) {
 	// std::cout << "* SCENERY CREATED *" << std::endl;
 }
 

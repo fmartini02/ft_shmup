@@ -1,0 +1,72 @@
+{
+   ncurses_suppression_1
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:malloc
+   ...
+   fun:initscr
+}
+{
+   ncurses_suppression_2
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:calloc
+   ...
+   fun:initscr
+}
+{
+   ncurses_suppression_3
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:malloc
+   ...
+   fun:newterm
+}
+{
+   ncurses_suppression_4
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:realloc
+   ...
+   fun:_nc_cap_name
+}
+{
+   ncurses_suppression_5
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:malloc
+   ...
+   fun:vw_printw
+}
+{
+   ncurses_suppression_6
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:malloc
+   ...
+   fun:printw
+}
+{
+   ncurses_suppression_7
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:malloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libncurses*
+}
+{
+   ncurses_suppression_8
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:calloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libncurses*
+}
+{
+   ncurses_suppression_9
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible,definite
+   fun:realloc
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libncurses*
+}

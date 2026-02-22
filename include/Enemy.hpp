@@ -55,19 +55,19 @@ public:
 	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
 };
 
-class Boss : public Enemy {
-private:
-	float	_moveTimer;
-	float	_player_x;
-	float	_player_y;
-public:
-	Boss(float x, float y);
+// class Boss : public Enemy {
+// private:
+// 	float	_moveTimer;
+// 	float	_player_x;
+// 	float	_player_y;
+// public:
+// 	Boss(float x, float y);
 
-	void	update(float dt) override;
-	void	render(WINDOW *win) override;
-	bool	containsPoint(float x, float y) const;
-	void    updatePlayerPos(float x, float y);
-	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
-};
+// 	void	update(float dt) override;
+// 	void	render(WINDOW *win) override;
+// 	bool	containsPoint(float x, float y) const;
+// 	void    updatePlayerPos(float x, float y);
+// 	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
+// };
 
 #endif

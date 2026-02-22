@@ -111,12 +111,20 @@ void World::spawnEnemies() {
 					case 2: _entities.push_back(std::make_unique<ZigzagEnemy>(x, 0));  break;
 				}
 				break;
-			default:  // livelli 21+: tutti incluso tank
+			case 4:
 				switch (rand() % 4) {
 					case 0: _entities.push_back(std::make_unique<BasicEnemy>(x, 0));   break;
 					case 1: _entities.push_back(std::make_unique<ShooterEnemy>(x, 0)); break;
 					case 2: _entities.push_back(std::make_unique<ZigzagEnemy>(x, 0));  break;
+					// case 3: _entities.push_back(std::make_unique<Boss>(x, 0)); break;
+				}
+			default:  // livelli 21+: tutti incluso tank
+				switch (rand() % 5) {
+					case 0: _entities.push_back(std::make_unique<BasicEnemy>(x, 0));   break;
+					case 1: _entities.push_back(std::make_unique<ShooterEnemy>(x, 0)); break;
+					case 2: _entities.push_back(std::make_unique<ZigzagEnemy>(x, 0));  break;
 					case 3: _entities.push_back(std::make_unique<TankEnemy>(x, 0));    break;
+					// case 4: _entities.push_back(std::make_unique<Boss>(x, 0)); break;
 				}
 				break;
 		}
@@ -130,12 +138,12 @@ void World::enemyShoot() {
 	std::vector<std::unique_ptr<AGameEntity>> toAdd;
 	for (auto& e : _entities) {
 		if (!e->isAlive()) continue;
-		Boss* boss = dynamic_cast<Boss*>(e.get());
-		if (boss) {
-			boss->updatePlayerPos(_player.getX(), _player.getY());
-			boss->shoot(toAdd);
-			continue;
-		}
+		// Boss* boss = dynamic_cast<Boss*>(e.get());
+		// if (boss) {
+		// 	boss->updatePlayerPos(_player.getX(), _player.getY());
+		// 	boss->shoot(toAdd);
+		// 	continue;
+		// }
 		Enemy* enemy = dynamic_cast<Enemy*>(e.get());
 		if (enemy)
 			enemy->shoot(toAdd);
@@ -149,7 +157,7 @@ void World::enemyShoot() {
 // ============================================================================
 void World::checkCollisions(int& lives, int& score) {
 	bool player_hit_this_frame = false;
-
+	(void)score;
 	for (auto& e : _entities) {
 		if (!e->isAlive()) continue;
 
@@ -180,31 +188,31 @@ void World::checkCollisions(int& lives, int& score) {
 		}
 
 		// proiettile player colpisce nemico
-		PlayerBullet* pb = dynamic_cast<PlayerBullet*>(e.get());
-		if (pb && pb->isAlive()) {
-			for (auto& e2 : _entities) {
-				// controlla nemici normali
-				Enemy* target = dynamic_cast<Enemy*>(e2.get());
-				if (target && !dynamic_cast<Boss*>(e2.get()) && target->isAlive()
-					&& (int)pb->getX() == (int)target->getX()
-					&& (int)pb->getY() == (int)target->getY()) {
-					pb->setAlive(false);
-					target->setAlive(false);
-					score += target->getPoints();
-				}
-				// controlla boss
-				Boss* boss = dynamic_cast<Boss*>(e2.get());
-				if (boss && boss->isAlive()
-					&& boss->containsPoint(pb->getX(), pb->getY())) {
-					pb->setAlive(false);
-					boss->setHp(boss->getHp() - 1);
-					if (boss->isDead()) {
-						boss->setAlive(false);
-						score += boss->getPoints();
-					}
-				}
-			}
-		}
+		// PlayerBullet* pb = dynamic_cast<PlayerBullet*>(e.get());
+		// if (pb && pb->isAlive()) {
+		// 	for (auto& e2 : _entities) {
+		// 		// controlla nemici normali
+		// 		Enemy* target = dynamic_cast<Enemy*>(e2.get());
+		// 		if (target && !dynamic_cast<Boss*>(e2.get()) && target->isAlive()
+		// 			&& (int)pb->getX() == (int)target->getX()
+		// 			&& (int)pb->getY() == (int)target->getY()) {
+		// 			pb->setAlive(false);
+		// 			target->setAlive(false);
+		// 			score += target->getPoints();
+		// 		}
+		// 		// controlla boss
+		// 		Boss* boss = dynamic_cast<Boss*>(e2.get());
+		// 		if (boss && boss->isAlive()
+		// 			&& boss->containsPoint(pb->getX(), pb->getY())) {
+		// 			pb->setAlive(false);
+		// 			boss->setHp(boss->getHp() - 1);
+		// 			if (boss->isDead()) {
+		// 				boss->setAlive(false);
+		// 				score += boss->getPoints();
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 
 	if (_invincibleFrames > 0)

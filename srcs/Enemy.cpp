@@ -116,76 +116,76 @@ void TankEnemy::shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) {
 	}
 }
 
-Boss::Boss(float x, float y) :
-	Enemy(x, y, "▄", 20, 1.0f, 100), _moveTimer(0) {
-}
+// Boss::Boss(float x, float y) :
+// 	Enemy(x, y, "▄", 20, 1.0f, 100), _moveTimer(0) {
+// }
 
-void Boss::update(float dt) {
-	_moveTimer += dt;
-	if (_moveTimer > 0.1f) {
-		setX(getX() + (rand() % 3 - 1));  // movimento laterale casuale
-		_moveTimer = 0;
-	}
-	if (getY() >= LINES)
-		setAlive(false);
-	if (_hp <= 0)
-		setAlive(false);
-}
+// void Boss::update(float dt) {
+// 	_moveTimer += dt;
+// 	if (_moveTimer > 0.1f) {
+// 		setX(getX() + (rand() % 3 - 1));  // movimento laterale casuale
+// 		_moveTimer = 0;
+// 	}
+// 	if (getY() >= LINES)
+// 		setAlive(false);
+// 	if (_hp <= 0)
+// 		setAlive(false);
+// }
 
-bool Boss::containsPoint(float x, float y) const {
-	return (x >= getX() && x <= getX() + 2 &&
-			y >= getY() && y <= getY() + 1);
-}
+// bool Boss::containsPoint(float x, float y) const {
+// 	return (x >= getX() && x <= getX() + 2 &&
+// 			y >= getY() && y <= getY() + 1);
+// }
 
-void Boss::updatePlayerPos(float x, float y) {
-	_player_x = x;
-	_player_y = y;
-}
+// void Boss::updatePlayerPos(float x, float y) {
+// 	_player_x = x;
+// 	_player_y = y;
+// }
 
-void Boss::shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) {
-	if (_shootTimer > 0) return;
+// void Boss::shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) {
+// 	if (_shootTimer > 0) return;
 
-	int pattern = rand() % 3;  // 3 pattern diversi
+// 	int pattern = rand() % 3;  // 3 pattern diversi
 
-	switch (pattern) {
-		case 0:  // CERCHIO — spara in 8 direzioni
-			entities.push_back(std::make_unique<EnemyBullet>(getX(), getY() + 1));
-			entities.push_back(std::make_unique<EnemyBullet>(getX() + 1, getY() + 1));
-			entities.push_back(std::make_unique<EnemyBullet>(getX() - 1, getY() + 1));
-			entities.push_back(std::make_unique<EnemyBullet>(getX() + 1, getY()));
-			entities.push_back(std::make_unique<EnemyBullet>(getX() - 1, getY()));
-			entities.push_back(std::make_unique<EnemyBullet>(getX(), getY() - 1));
-			entities.push_back(std::make_unique<EnemyBullet>(getX() + 1, getY() - 1));
-			entities.push_back(std::make_unique<EnemyBullet>(getX() - 1, getY() - 1));
-			_shootTimer = 0.3f;
-			break;
+// 	switch (pattern) {
+// 		case 0:  // CERCHIO — spara in 8 direzioni
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX(), getY() + 1));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX() + 1, getY() + 1));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX() - 1, getY() + 1));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX() + 1, getY()));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX() - 1, getY()));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX(), getY() - 1));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX() + 1, getY() - 1));
+// 			entities.push_back(std::make_unique<EnemyBullet>(getX() - 1, getY() - 1));
+// 			_shootTimer = 0.3f;
+// 			break;
 
-		case 1:  // RAFFICA — 5 proiettili in colonna
-			for (int i = -2; i <= 2; i++)
-				entities.push_back(std::make_unique<EnemyBullet>(getX() + i, getY() + 1));
-			_shootTimer = 0.5f;
-			break;
+// 		case 1:  // RAFFICA — 5 proiettili in colonna
+// 			for (int i = -2; i <= 2; i++)
+// 				entities.push_back(std::make_unique<EnemyBullet>(getX() + i, getY() + 1));
+// 			_shootTimer = 0.5f;
+// 			break;
 
-		case 2:  // MIRINO — punta verso il player
-		{
-			float dx = _player_x - getX();
-			float dy = _player_y - getY();
-			float len = sqrt(dx * dx + dy * dy);
-			if (len > 0) {
-				dx /= len;
-				dy /= len;
-			}
-			entities.push_back(std::make_unique<EnemyBullet>(
-				getX() + dx, getY() + dy));
-			_shootTimer = 0.2f;
-			break;
-		}
-	}
-}
+// 		case 2:  // MIRINO — punta verso il player
+// 		{
+// 			float dx = _player_x - getX();
+// 			float dy = _player_y - getY();
+// 			float len = sqrt(dx * dx + dy * dy);
+// 			if (len > 0) {
+// 				dx /= len;
+// 				dy /= len;
+// 			}
+// 			entities.push_back(std::make_unique<EnemyBullet>(
+// 				getX() + dx, getY() + dy));
+// 			_shootTimer = 0.2f;
+// 			break;
+// 		}
+// 	}
+// }
 
-void Boss::render(WINDOW *win) {
-	attron(COLOR_PAIR(2) | A_BOLD);
-	mvwprintw(win, (int)getY(),     (int)getX(),     "▄█▄");
-	mvwprintw(win, (int)getY() + 1, (int)getX(),     "███");
-	attroff(COLOR_PAIR(2) | A_BOLD);
-}
+// void Boss::render(WINDOW *win) {
+// 	attron(COLOR_PAIR(2) | A_BOLD);
+// 	mvwprintw(win, (int)getY(),     (int)getX(),     "▄█▄");
+// 	mvwprintw(win, (int)getY() + 1, (int)getX(),     "███");
+// 	attroff(COLOR_PAIR(2) | A_BOLD);
+// }
