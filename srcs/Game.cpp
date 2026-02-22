@@ -40,7 +40,7 @@ void Game::run() {
 		auto now = std::chrono::steady_clock::now();
 		_deltaTime = std::chrono::duration<float>(now - _lastTime).count();
 		_lastTime = now;
-//input → update → render
+//input → update → render			exit(0);
 		handleInput();
 		update();
 		render();

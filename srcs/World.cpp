@@ -1,5 +1,6 @@
 #include "../include/World.hpp"
 #include "../include/Scenery.hpp"
+#include "../include/Enemy.hpp"
 #include <cstdlib>
 #include <algorithm>
 
@@ -36,7 +37,7 @@ void World::render(WINDOW *win) {
 
 void World::renderBackground(WINDOW *win) {
 	attron(COLOR_PAIR(6) | A_DIM);  // colore dedicato al background — aggiungilo in Render
-	for (int col = 0; col < COLS; col += 1) {  // colonnine ogni 3 celle
+	for (int col = 0; col < COLS; col += 4) {  // colonnine ogni 3 celle
 		for (int row = 0; row < LINES - 1; row++) {
 			mvwprintw(win, row, col, "│");
 		}
@@ -129,6 +130,12 @@ void World::enemyShoot() {
 	std::vector<std::unique_ptr<AGameEntity>> toAdd;
 	for (auto& e : _entities) {
 		if (!e->isAlive()) continue;
+		Boss* boss = dynamic_cast<Boss*>(e.get());
+		if (boss) {
+			boss->updatePlayerPos(_player.getX(), _player.getY());
+			boss->shoot(toAdd);
+			continue;
+		}
 		Enemy* enemy = dynamic_cast<Enemy*>(e.get());
 		if (enemy)
 			enemy->shoot(toAdd);
@@ -176,13 +183,25 @@ void World::checkCollisions(int& lives, int& score) {
 		PlayerBullet* pb = dynamic_cast<PlayerBullet*>(e.get());
 		if (pb && pb->isAlive()) {
 			for (auto& e2 : _entities) {
+				// controlla nemici normali
 				Enemy* target = dynamic_cast<Enemy*>(e2.get());
-				if (target && target->isAlive()
+				if (target && !dynamic_cast<Boss*>(e2.get()) && target->isAlive()
 					&& (int)pb->getX() == (int)target->getX()
 					&& (int)pb->getY() == (int)target->getY()) {
 					pb->setAlive(false);
 					target->setAlive(false);
 					score += target->getPoints();
+				}
+				// controlla boss
+				Boss* boss = dynamic_cast<Boss*>(e2.get());
+				if (boss && boss->isAlive()
+					&& boss->containsPoint(pb->getX(), pb->getY())) {
+					pb->setAlive(false);
+					boss->setHp(boss->getHp() - 1);
+					if (boss->isDead()) {
+						boss->setAlive(false);
+						score += boss->getPoints();
+					}
 				}
 			}
 		}

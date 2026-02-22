@@ -21,7 +21,7 @@ void AProjectile::render(WINDOW *win) {
 
 // PlayerBullet: va verso l'alto (dy = -1), simbolo '|'
 PlayerBullet::PlayerBullet(float x, float y) :
-	AProjectile(x, y, "⬢", 0, -1, 8.0f) {}
+	AProjectile(x, y, "▲", 0, -1, 8.0f) {}
 
 // EnemyBullet: va verso il basso (dy = 1), simbolo '*'
 EnemyBullet::EnemyBullet(float x, float y) :
