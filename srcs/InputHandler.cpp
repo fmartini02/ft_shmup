@@ -3,11 +3,11 @@
 #include <ncurses.h>
 
 InputHandler::InputHandler() : _key(0) {
-	std::cout << "*HANDLER HAS BEEN CREATED*" << std::endl;
+	// std::cout << "*HANDLER HAS BEEN CREATED*" << std::endl;
 }
 
 InputHandler::~InputHandler() {
-	std::cout << "~HANDLER HAS BEEN DESTROYED~" << std::endl;
+	// std::cout << "~HANDLER HAS BEEN DESTROYED~" << std::endl;
 }
 
 void	InputHandler::read() {

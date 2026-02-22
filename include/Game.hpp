@@ -5,6 +5,8 @@
 #include <chrono>
 #include "InputHandler.hpp"
 #include "Render.hpp"
+#include "World.hpp"
+#include "HUD.hpp"
 
 class Game {
 private:
@@ -17,8 +19,8 @@ private:
 // //class needed by game;
 	InputHandler	_input;
 	Render			_render;
-// 	HUD				_hud;
-// 	World			_world;
+	HUD				_hud;
+	World			_world;
 public:
 	Game();
 	~Game();

@@ -12,6 +12,8 @@ private:
 public:
 	Render();
 	~Render();
+	int	getWidth() const;
+	int	getHeight() const;
 };
 
 #endif

@@ -2,11 +2,11 @@
 
 AGameEntity::AGameEntity(float x, float y, char symbol) :
 _x(x), _y(y), _symbol(symbol), _alive(true) {
-	std::cout << "* AGAME_ENTITY HAS BEEN CREATED *" << std::endl;
+	// std::cout << "* AGAME_ENTITY HAS BEEN CREATED *" << std::endl;
 }
 
 AGameEntity::~AGameEntity() {
-	std::cout << "~ AGAME_ENTITY HAS BEEN DESTROYED ~" << std::endl;
+	// std::cout << "~ AGAME_ENTITY HAS BEEN DESTROYED ~" << std::endl;
 }
 
 float	AGameEntity::getX()const { return _x; }

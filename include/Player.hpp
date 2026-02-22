@@ -2,6 +2,8 @@
 #define PLAYER_HPP
 
 #include "Ship.hpp"
+#include <vector>
+#include <memory>
 
 class Player: public Ship {
 private:
@@ -17,7 +19,7 @@ public:
 	int		getLives();
 	void	update(float dt) override;
 	void	render(WINDOW *win) override;
-	void	shoot() override;
+	void	shoot(std::vector<std::unique_ptr<AGameEntity>>& entities) override;
 	void	move(float dx, float dy);
 	void	addScore(int points);
 	void	loseLife();
