@@ -8,7 +8,7 @@
 class Player: public Ship {
 private:
 	int		_score;
-	int		_lives;//numero di continua
+	int		_lives; //numero di continua
 	float	_shootCooldown;
 	float	_shootTimer;
 public:

@@ -44,5 +44,8 @@ void Game::run() {
 		handleInput();
 		update();
 		render();
+		if (!_lives){
+			_running = false;// SE LE VITE NON SONO PIU VALIDE MI CONCLUDI IL RUNNING
+		}
 	}
 }
